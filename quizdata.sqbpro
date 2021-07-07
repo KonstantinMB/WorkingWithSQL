@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/martokomp/Desktop/quizdata.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser query" current="2"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1711"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,6:mainpeople"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="people" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort><column index="5" mode="0"/></sort><column_widths><column index="1" value="76"/><column index="2" value="78"/><column index="3" value="78"/><column index="4" value="106"/><column index="5" value="82"/><column index="6" value="90"/><column index="7" value="82"/><column index="8" value="96"/><column index="9" value="73"/><column index="10" value="40"/><column index="11" value="223"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="states" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="97"/><column index="2" value="97"/><column index="3" value="62"/><column index="4" value="118"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">SELECT states.state_name, COUNT(people.shirt_or_hat)
+FROM people
+JOIN states ON people.state_code=states.state_abbrev
+WHERE people.shirt_or_hat='hat'
+GROUP BY people.state_code, states.state_name;</sql><sql name="SQL 2">SELECT DISTINCT(people.team), states.division, COUNT(people.team)
+FROM people
+JOIN states ON people.state_code=states.state_abbrev
+GROUP BY people.team, states.division;</sql><sql name="SQL 3">SELECT *
+FROM people
+WHERE state_code=(
+	SELECT state_abbrev FROM states WHERE states.state_name='Kansas' AND people.shirt_or_hat='shirt'
+	);</sql><sql name="SQL 5">SELECT first_name, replace(&quot;d&quot;, &quot;-&quot;)
+FROM people;</sql><sql name="SQL 6">SELECT MAX(CAST (quiz_points AS INTEGER))
+FROM people;</sql><sql name="SQL 9">SELECT * FROM people WHERE company = 'Telerik Inc';
+
+UPDATE people SET company='Telerik Inc' WHERE age=20;</sql><sql name="SQL 10">DELETE FROM people WHERE quiz_points IS NULL;</sql><sql name="SQL 11">SELECT replace(first_name, 'd','-') FROM people;</sql><sql name="SQL 12">SELECT UPPER(SUBSTRING('Тexting',2,3));</sql><current_tab id="8"/></tab_sql></sqlb_project>
